@@ -16,7 +16,7 @@ QVector<QVector<int>> Multiplication::standart(QVector<QVector<int>>& matrix1, Q
 
     QVector<QVector<int>> result(n1, QVector<int>(m2, 0));
 
-    if(m1 != n2) return result;
+    if(m1 != n2) throw std::exception();
 
     for (int i = 0; i < n1; i++)
         for (int j = 0; j < m2; j++)
@@ -39,7 +39,7 @@ QVector<QVector<int>> Multiplication::vinograd(QVector<QVector<int>>& matrix1, Q
 
     QVector<QVector<int>> result(n1, QVector<int>(m2, 0));
 
-    if(m1 != n2) return result;
+    if(m1 != n2) throw std::exception();
 
     for (int i = 0; i < n1; i++)
     {

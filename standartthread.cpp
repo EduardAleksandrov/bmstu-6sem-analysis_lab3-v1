@@ -1,4 +1,5 @@
 #include "standartthread.h"
+#include <QDebug>
 
 StandartThread::StandartThread(std::array<QVector<QVector<int>>, 5>& matrix1,
                                std::array<QVector<QVector<int>>, 5>& matrix2,
@@ -13,11 +14,19 @@ void StandartThread::run()
     {
         QVector<QVector<int>> res;
         auto start = std::chrono::high_resolution_clock::now();
-        if(K == 1)
+
+        try
         {
-            res= mult.standart(b1[i], b2[i]);
-        } else if(K == 2) {
-            res = mult.vinograd(b1[i], b2[i]);
+            if(K == 1)
+            {
+                res= mult.standart(b1[i], b2[i]);
+            } else if(K == 2) {
+                res = mult.vinograd(b1[i], b2[i]);
+            }
+        }
+        catch (const std::exception& err)
+        {
+            qDebug() << "Error!!!";
         }
 
         auto end = std::chrono::high_resolution_clock::now();
