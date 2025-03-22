@@ -16,7 +16,7 @@ void StandartThread::run()
         if(K == 1)
         {
             res= mult.standart(b1[i], b2[i]);
-        } else {
+        } else if(K == 2) {
             res = mult.vinograd(b1[i], b2[i]);
         }
 
