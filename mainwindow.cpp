@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <chrono>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -74,11 +75,11 @@ void MainWindow::on_pushButton_clicked()
     for(int i = 0; i < N.size(); i++)
     {
         QVector<QVector<int>> res_m1_st;
-        clock_t start = clock();
+        auto start = std::chrono::high_resolution_clock::now();
         res_m1_st = mult->standart(b1[i], b2[i]);
-        clock_t end = clock();
-        double result = (double(end - start) / CLOCKS_PER_SEC) * 1000; // миллисекунды
-        timer_result_standart_best.push_back(result);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsedTime = (end - start) * 1000; // миллисекунды
+        timer_result_standart_best.push_back(elapsedTime.count());
     }
 
     ui->widget->clearGraphs();
@@ -98,11 +99,11 @@ void MainWindow::on_pushButton_clicked()
     for(int i = 0; i < N.size(); i++)
     {
         QVector<QVector<int>> res_m1_vin;
-        clock_t start = clock();
+        auto start = std::chrono::high_resolution_clock::now();
         res_m1_vin = mult->vinograd(b1[i], b2[i]);
-        clock_t end = clock();
-        double result = (double(end - start) / CLOCKS_PER_SEC) * 1000; // миллисекунды
-        timer_result_vinograd_best.push_back(result);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsedTime = (end - start) * 1000; // миллисекунды
+        timer_result_vinograd_best.push_back(elapsedTime.count());
     }
     ui->widget_2->clearGraphs();
     ui->widget_2->addGraph();
@@ -123,11 +124,11 @@ void MainWindow::on_pushButton_clicked()
     for(int i = 0; i < N.size(); i++)
     {
         QVector<QVector<int>> res_m1_st;
-        clock_t start = clock();
+        auto start = std::chrono::high_resolution_clock::now();
         res_m1_st = mult->standart(w1[i], w2[i]);
-        clock_t end = clock();
-        double result = (double(end - start) / CLOCKS_PER_SEC) * 1000; // миллисекунды
-        timer_result_standart_worst.push_back(result);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsedTime = (end - start) * 1000; // миллисекунды
+        timer_result_standart_worst.push_back(elapsedTime.count());
     }
 
     ui->widget_4->clearGraphs();
@@ -147,11 +148,11 @@ void MainWindow::on_pushButton_clicked()
     for(int i = 0; i < N.size(); i++)
     {
         QVector<QVector<int>> res_m1_vin;
-        clock_t start = clock();
+        auto start = std::chrono::high_resolution_clock::now();
         res_m1_vin = mult->vinograd(w1[i], w2[i]);
-        clock_t end = clock();
-        double result = (double(end - start) / CLOCKS_PER_SEC) * 1000; // миллисекунды
-        timer_result_vinograd_worst.push_back(result);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsedTime = (end - start) * 1000; // миллисекунды
+        timer_result_vinograd_worst.push_back(elapsedTime.count());
     }
     ui->widget_5->clearGraphs();
     ui->widget_5->addGraph();
