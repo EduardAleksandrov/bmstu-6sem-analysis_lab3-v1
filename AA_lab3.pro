@@ -12,12 +12,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     multiplication.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    standartthread.cpp
 
 HEADERS += \
     mainwindow.h \
     multiplication.h \
-    qcustomplot.h
+    qcustomplot.h \
+    standartthread.h
 
 FORMS += \
     mainwindow.ui

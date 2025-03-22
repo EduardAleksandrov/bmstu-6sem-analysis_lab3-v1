@@ -18,6 +18,10 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void handleResults1(QVector<double> result, QVector<double> N);
+    void handleResults2(QVector<double> result, QVector<double> N);
+    void handleResults4(QVector<double> result, QVector<double> N);
+
 
 private:
     Ui::MainWindow *ui;
