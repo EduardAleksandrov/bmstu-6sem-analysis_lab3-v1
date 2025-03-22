@@ -107,7 +107,7 @@ void MainWindow::handleResults1(QVector<double> result, QVector<double> N)
     ui->widget->xAxis->setLabel("N");
     ui->widget->yAxis->setLabel("t, ms");
     ui->widget->xAxis->setRange(50, 550);
-    ui->widget->yAxis->setRange(0, 20000);
+    ui->widget->yAxis->setRange(0, 25000);
     ui->widget->replot();
 
     qDebug() << "Res 1 - 500: " << result[4];
@@ -123,7 +123,7 @@ void MainWindow::handleResults2(QVector<double> result, QVector<double> N)
     ui->widget_2->xAxis->setLabel("N");
     ui->widget_2->yAxis->setLabel("t, ms");
     ui->widget_2->xAxis->setRange(50, 550);
-    ui->widget_2->yAxis->setRange(0, 20000);
+    ui->widget_2->yAxis->setRange(0, 25000);
     ui->widget_2->replot();
 
     qDebug() << "Res 2 - 500: " << result[4];
@@ -139,7 +139,7 @@ void MainWindow::handleResults4(QVector<double> result, QVector<double> N)
     ui->widget_4->xAxis->setLabel("N");
     ui->widget_4->yAxis->setLabel("t, ms");
     ui->widget_4->xAxis->setRange(50, 550);
-    ui->widget_4->yAxis->setRange(0, 20000);
+    ui->widget_4->yAxis->setRange(0, 25000);
     ui->widget_4->replot();
 
     qDebug() << "Res 4 - 500: " << result[4];
@@ -156,7 +156,7 @@ void MainWindow::handleResults5(QVector<double> result, QVector<double> N)
     ui->widget_5->xAxis->setLabel("N");
     ui->widget_5->yAxis->setLabel("t, ms");
     ui->widget_5->xAxis->setRange(50, 550);
-    ui->widget_5->yAxis->setRange(0, 20000);
+    ui->widget_5->yAxis->setRange(0, 25000);
     ui->widget_5->replot();
 
     qDebug() << "Res 5 - 500: " << result[4];
