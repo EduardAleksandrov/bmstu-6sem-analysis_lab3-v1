@@ -34,8 +34,7 @@ private:
     StandartThread* timerThread5;
 
 
-    QVector<double> N {100, 200, 300, 400, 500};
-
+    QVector<double> N;
 
     QVector<QVector<int>> b_m1_1;
     QVector<QVector<int>> b_m1_2;
