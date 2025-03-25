@@ -80,6 +80,12 @@ void MainWindow::on_pushButton_clicked()
     connect(timerThread2, &StandartThread::resultsReady, timerThread2, &QObject::deleteLater); // Удаляем поток после завершения
     timerThread2->start();
 
+// Л.С. Виноград оптимизированный
+    timerThread3 = new StandartThread(b1, b2, N, 3, this);
+    connect(timerThread3, &StandartThread::resultsReady, this, &MainWindow::handleResults3);
+    connect(timerThread3, &StandartThread::resultsReady, timerThread3, &QObject::deleteLater); // Удаляем поток после завершения
+    timerThread3->start();
+
 // Х.С. Стандарт
     // Создаем экземпляр TimerThread
     timerThread4 = new StandartThread(w1, w2, N, 1, this);
@@ -92,6 +98,12 @@ void MainWindow::on_pushButton_clicked()
     connect(timerThread5, &StandartThread::resultsReady, this, &MainWindow::handleResults5);
     connect(timerThread5, &StandartThread::resultsReady, timerThread5, &QObject::deleteLater); // Удаляем поток после завершения
     timerThread5->start();
+
+// Х.С. Виноград оптимизированный
+    timerThread6 = new StandartThread(w1, w2, N, 3, this);
+    connect(timerThread6, &StandartThread::resultsReady, this, &MainWindow::handleResults6);
+    connect(timerThread6, &StandartThread::resultsReady, timerThread6, &QObject::deleteLater); // Удаляем поток после завершения
+    timerThread6->start();
 
 //    qDebug() << timer_result_standart_worst[4] << " " << timer_result_vinograd_worst[4];
 }
@@ -128,6 +140,22 @@ void MainWindow::handleResults2(QVector<double> result, QVector<double> N)
 
     qDebug() << "Res 2 - 500: " << result[4];
 }
+void MainWindow::handleResults3(QVector<double> result, QVector<double> N)
+{
+    ui->widget_3->clearGraphs();
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(0)->setData(N, result);
+    ui->widget_3->graph(0)->setPen(QColor(50, 50, 50, 255));
+    //    ui->widget_11->graph(0)->setLineStyle(QCPGraph::lsNone);
+    ui->widget_3->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, Qt::blue, Qt::white, 5));
+    ui->widget_3->xAxis->setLabel("N");
+    ui->widget_3->yAxis->setLabel("t, ms");
+    ui->widget_3->xAxis->setRange(50, 550);
+    ui->widget_3->yAxis->setRange(0, 25000);
+    ui->widget_3->replot();
+
+    qDebug() << "Res 3 - 500: " << result[4];
+}
 void MainWindow::handleResults4(QVector<double> result, QVector<double> N)
 {
     ui->widget_4->clearGraphs();
@@ -160,6 +188,22 @@ void MainWindow::handleResults5(QVector<double> result, QVector<double> N)
     ui->widget_5->replot();
 
     qDebug() << "Res 5 - 500: " << result[4];
+}
+void MainWindow::handleResults6(QVector<double> result, QVector<double> N)
+{
+    ui->widget_6->clearGraphs();
+    ui->widget_6->addGraph();
+    ui->widget_6->graph(0)->setData(N, result);
+    ui->widget_6->graph(0)->setPen(QColor(50, 50, 50, 255));
+    //    ui->widget_11->graph(0)->setLineStyle(QCPGraph::lsNone);
+    ui->widget_6->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, Qt::blue, Qt::white, 5));
+    ui->widget_6->xAxis->setLabel("N");
+    ui->widget_6->yAxis->setLabel("t, ms");
+    ui->widget_6->xAxis->setRange(50, 550);
+    ui->widget_6->yAxis->setRange(0, 25000);
+    ui->widget_6->replot();
+
+    qDebug() << "Res 6 - 500: " << result[4];
 }
 
 

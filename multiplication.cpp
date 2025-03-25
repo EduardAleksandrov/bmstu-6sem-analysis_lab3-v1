@@ -82,3 +82,65 @@ QVector<QVector<int>> Multiplication::vinograd(QVector<QVector<int>>& matrix1, Q
 
     return result;
 }
+
+QVector<QVector<int>> Multiplication::vinograd_optim(QVector<QVector<int>>& matrix1, QVector<QVector<int>>& matrix2)
+{
+    int n1 = matrix1.size();
+    int m1 = matrix1.back().size();
+
+    int n2 = matrix2.size();
+    int m2 = matrix2.back().size();
+
+    QVector<int> mulH(n1, 0);
+    QVector<int> mulV(m2, 0);
+
+    QVector<QVector<int>> result(n1, QVector<int>(m2, 0));
+
+    if(m1 != n2) throw std::exception();
+
+    for (int i = 0; i < n1; i++)
+    {
+        int buf = 0;
+        for (int k = 0; k < m1 / 2; k++)
+        {
+            buf += matrix1[i][k << 1] * matrix1[i][(k << 1) + 1];
+        }
+        mulH[i] = buf;
+    }
+
+    for (int i = 0; i < m2; i++)
+    {
+        int buf = 0;
+        for (int k = 0; k < n2 / 2; k++)
+        {
+            buf += matrix2[k << 1][i] * matrix2[(k << 1)+ 1][i];
+        }
+        mulV[i] = buf;
+    }
+
+    for (int i = 0; i < n1; i++)
+    {
+        for (int j = 0; j < m2; j++)
+        {
+            int buf = - mulH[i] - mulV[j];
+            for (int k = 0; k < m1 / 2; k++)
+            {
+                 buf += (matrix1[i][(k << 1) + 1] + matrix2[k << 1][j]) * (matrix1[i][k << 1] + matrix2[(k << 1) + 1][j]);
+            }
+            result[i][j] = buf;
+        }
+    }
+
+    if (m1 % 2)
+    {
+        for (int i = 0; i < n1; i++)
+        {
+            for (int j = 0; j < m2; j++)
+            {
+                result[i][j] = result[i][j] + matrix1[i][m1 - 1] * matrix2[m1 - 1][j];
+            }
+        }
+    }
+
+    return result;
+}

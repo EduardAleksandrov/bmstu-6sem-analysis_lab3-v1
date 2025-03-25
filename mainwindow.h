@@ -21,8 +21,10 @@ private slots:
     void on_pushButton_clicked();
     void handleResults1(QVector<double> result, QVector<double> N);
     void handleResults2(QVector<double> result, QVector<double> N);
+    void handleResults3(QVector<double> result, QVector<double> N);
     void handleResults4(QVector<double> result, QVector<double> N);
     void handleResults5(QVector<double> result, QVector<double> N);
+    void handleResults6(QVector<double> result, QVector<double> N);
 
 
 private:
@@ -30,8 +32,10 @@ private:
     Multiplication *mult;
     StandartThread* timerThread;
     StandartThread* timerThread2;
+    StandartThread* timerThread3;
     StandartThread* timerThread4;
     StandartThread* timerThread5;
+    StandartThread* timerThread6;
 
 
     QVector<double> N;

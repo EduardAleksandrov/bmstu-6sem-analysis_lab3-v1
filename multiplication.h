@@ -11,6 +11,7 @@ public:
     explicit Multiplication(QObject *parent = nullptr);
     QVector<QVector<int>> standart(QVector<QVector<int>>& matrix1, QVector<QVector<int>>& matrix2);
     QVector<QVector<int>> vinograd(QVector<QVector<int>>& matrix1, QVector<QVector<int>>& matrix2);
+    QVector<QVector<int>> vinograd_optim(QVector<QVector<int>>& matrix1, QVector<QVector<int>>& matrix2);
 
 
 signals:
